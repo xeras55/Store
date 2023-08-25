@@ -16,14 +16,19 @@ import proyect.store.DTO.CategoriesNamesDTO;
 import proyect.store.model.CategoriesModel;
 import proyect.store.repository.CategoriesRepo;
 import proyect.store.service.MyService;
+import proyect.store.service.NamesService;
 
-@RestController
+
 @Controller
 public class MainControler {
   @Autowired
   private CategoriesRepo categoriesRepo;
 
+@Autowired
+private NamesService namesService;
+
   private  MyService service= new MyService();
+
   @GetMapping("/inicio")
   public String main(Model model){
     model.addAttribute("objeto", service.myop());
@@ -43,11 +48,19 @@ public class MainControler {
     @GetMapping("/b")
   public List<CategoriesModel> verPuerbas1(){
     List<CategoriesModel> res = categoriesRepo.findAll();
+    
     for (CategoriesModel categoriesModel : res) {
     System.out.println(categoriesModel.getNombre_categoria()); 
     }
     return categoriesRepo.findAll();
 
   }
+
+  
+  @ModelAttribute("listCategories")
+  public List<CategoriesModel> listCate(){
+    return namesService.list();
+  }
+  
 }
 
