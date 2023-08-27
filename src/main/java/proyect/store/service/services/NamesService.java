@@ -1,4 +1,4 @@
-package proyect.store.service;
+package proyect.store.service.services;
 import java.util.List;
 
 import org.springframework.stereotype.Component;

@@ -13,16 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import proyect.store.DTO.CategoriesNamesDTO;
+import proyect.store.model.CategSubCaAux;
 import proyect.store.model.CategoriesModel;
+import proyect.store.repository.CateSubAuxRepo;
 import proyect.store.repository.CategoriesRepo;
 import proyect.store.service.MyService;
-import proyect.store.service.NamesService;
+import proyect.store.service.services.NamesService;
 
-
+@RestController
 @Controller
 public class MainControler {
   @Autowired
   private CategoriesRepo categoriesRepo;
+
+  @Autowired
+  private CateSubAuxRepo cateSubAuxRepo;
 
 @Autowired
 private NamesService namesService;
@@ -53,10 +58,12 @@ private NamesService namesService;
     System.out.println(categoriesModel.getNombre_categoria()); 
     }
     return categoriesRepo.findAll();
-
+  }
+    @GetMapping("/c")
+  public List<Long> verPuerbasLong(){
+  return cateSubAuxRepo.fidByMySelf(4L);
   }
 
-  
   @ModelAttribute("listCategories")
   public List<CategoriesModel> listCate(){
     return namesService.list();

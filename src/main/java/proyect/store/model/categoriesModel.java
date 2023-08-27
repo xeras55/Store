@@ -1,5 +1,7 @@
 package proyect.store.model;
 
+
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
@@ -8,8 +10,6 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,10 +18,9 @@ import jakarta.persistence.Table;
 public class CategoriesModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long  id_categoria_p;
+  private long id_categoria_p;
   @Column
-  private String  nombre_categoria;
-
+  private String nombre_categoria;
 
   public CategoriesModel(long id_categoria_p, String nombre_categoria) {
     this.id_categoria_p = id_categoria_p;
@@ -38,10 +37,9 @@ public class CategoriesModel {
   public String getNombre_categoria() {
     return nombre_categoria;
   }
+
   public void setNombre_categoria(String nombre_categoria) {
     this.nombre_categoria = nombre_categoria;
   }
 
-
-  
 }

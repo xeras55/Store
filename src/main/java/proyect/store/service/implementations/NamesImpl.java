@@ -1,4 +1,4 @@
-package proyect.store.service;
+package proyect.store.service.implementations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,7 @@ import jakarta.annotation.PostConstruct;
 import proyect.store.DTO.CategoriesNamesDTO;
 import proyect.store.model.CategoriesModel;
 import proyect.store.repository.CategoriesRepo;
+import proyect.store.service.services.NamesService;
 
 @Service
 public class NamesImpl implements NamesService {
@@ -21,9 +22,7 @@ public class NamesImpl implements NamesService {
 
 
   private List<CategoriesModel> list;
-
-
-
+  
   public NamesImpl() {
     
   }
@@ -31,17 +30,7 @@ public class NamesImpl implements NamesService {
   public void initialize(){
     list = categoriesRepo.findAll();
   }
-  /*
-  public List<String> test(){
-    List<CategoriesModel> res = categoriesRepo.findAll();
-    List<String> re = new ArrayList<>();
-    for (CategoriesModel categoriesModel : res) {
-    System.out.println(categoriesModel.getNombre_categoria());
-    re.add(categoriesModel.getNombre_categoria());
-    }
-    return re;
-  }
-  */
+
   @Override
   public List<CategoriesModel> list() {
   return list;
