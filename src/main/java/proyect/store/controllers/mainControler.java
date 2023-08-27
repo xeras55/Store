@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import proyect.store.DTO.CategoriesNamesDTO;
 import proyect.store.model.CategSubCaAux;
 import proyect.store.model.CategoriesModel;
+import proyect.store.model.SubCategoriesModel;
 import proyect.store.repository.CateSubAuxRepo;
 import proyect.store.repository.CategoriesRepo;
+import proyect.store.repository.SubCatRepo;
 import proyect.store.service.MyService;
 import proyect.store.service.services.NamesService;
 
@@ -29,45 +31,60 @@ public class MainControler {
   @Autowired
   private CateSubAuxRepo cateSubAuxRepo;
 
-@Autowired
-private NamesService namesService;
+  @Autowired
+  private SubCatRepo subCatRepo;
 
-  private  MyService service= new MyService();
+  @Autowired
+  private NamesService namesService;
+
+  private MyService service = new MyService();
 
   @GetMapping("/inicio")
-  public String main(Model model){
+  public String main(Model model) {
     model.addAttribute("objeto", service.myop());
     return "main";
   }
-    @GetMapping("/test")
-  public String test(Model model){
+
+  @GetMapping("/test")
+  public String test(Model model) {
     model.addAttribute("objeto", service.myop());
     return "test";
   }
-  
+
   @GetMapping("/a")
-  public List<CategoriesModel> verPuerbas(){
-  return categoriesRepo.findAll();
+  public List<CategoriesModel> verPuerbas() {
+    return categoriesRepo.findAll();
   }
 
-    @GetMapping("/b")
-  public List<CategoriesModel> verPuerbas1(){
+  @GetMapping("/b")
+  public List<CategoriesModel> verPuerbas1() {
     List<CategoriesModel> res = categoriesRepo.findAll();
-    
+
     for (CategoriesModel categoriesModel : res) {
-    System.out.println(categoriesModel.getNombre_categoria()); 
+      System.out.println(categoriesModel.getNombre_categoria());
     }
     return categoriesRepo.findAll();
   }
-    @GetMapping("/c")
-  public List<Long> verPuerbasLong(){
-  return cateSubAuxRepo.fidByMySelf(4L);
+
+  @GetMapping("/c")
+  public List<Long> verPuerbasLong() {
+    return cateSubAuxRepo.fidByMySelf(4L);
+  }
+
+  @GetMapping("/d")
+  public List<SubCategoriesModel> verPuerbassub() {
+    return subCatRepo.findAll();
+  }
+
+  @GetMapping("/e")
+  public List<String> verPuerbassubN() {
+    System.out.println(subCatRepo.findName(1L));
+    return subCatRepo.findName(1L);
   }
 
   @ModelAttribute("listCategories")
-  public List<CategoriesModel> listCate(){
+  public List<CategoriesModel> listCate() {
     return namesService.list();
   }
-  
-}
 
+}
