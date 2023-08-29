@@ -1,5 +1,6 @@
 package proyect.store.service.implementations;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,16 @@ public class SubCatImpl implements SubCatService{
 
   private List<SubCategoriesModel> listSub;
   private List<String> listSubN;
+  
 
   public SubCatImpl() {
 
   }
 
   @PostConstruct
-  public void initialize(){
+  public void initialize(List<Long> ids){
     //listSub = subCatRepo.findAll();
-    listSubN = subCatRepo.findName(3L);
+    listSubN = subCatRepo.findNamesByIds(ids);
   }
 
 

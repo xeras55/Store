@@ -1,6 +1,7 @@
 package proyect.store.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import proyect.store.repository.SubCatRepo;
 import proyect.store.service.MyService;
 import proyect.store.service.services.NamesService;
 
-@RestController
+//@RestController
 @Controller
 public class MainControler {
   @Autowired
@@ -69,7 +70,7 @@ public class MainControler {
   @GetMapping("/c")
   public List<Long> verPuerbasLong() {
     return cateSubAuxRepo.fidByMySelf(4L);
-  }
+    }
 
   @GetMapping("/d")
   public List<SubCategoriesModel> verPuerbassub() {
@@ -78,13 +79,27 @@ public class MainControler {
 
   @GetMapping("/e")
   public List<String> verPuerbassubN() {
-    System.out.println(subCatRepo.findName(1L));
-    return subCatRepo.findName(1L);
+    List<Long> listaDeIds = Arrays.asList(1L, 2L, 3L);
+    return subCatRepo.findNamesByIds(listaDeIds);
   }
-
+  
+    @GetMapping("/f")
+  public List<String> lograrelistar() {
+    List<Long> listaDeIds = cateSubAuxRepo.fidByMySelf(4L);// regresara 3 y 4
+    
+    return subCatRepo.findNamesByIds(listaDeIds);
+  }
+  
   @ModelAttribute("listCategories")
   public List<CategoriesModel> listCate() {
     return namesService.list();
   }
+
+  @ModelAttribute("listSubCategories")
+  public List<String> listingSub(){
+    return null;
+  }
+
+  // terngo que insertar lo de c en d
 
 }
