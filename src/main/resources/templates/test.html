@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +8,24 @@
 </head>
 <body style="background-color: #232946">
   <nav class="navbar navbar-expand-lg" style="background-color: #b8c1ec;">
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-      </ul>
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tienda de ropa generica</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li th:each="name : ${listCategories}"  class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${name.nombre_categoria}"></a>
+            <ul class="dropdown-menu" th:each="subName: ${listSubCategories}">
+              <li th:text="${subName}"><a href=""></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown1
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">lkdhsjafalk;sdfjaksdlf</a></li>
-        <li><a class="dropdown-item" href="#">lkdhsjafalk;sdfjaksdlf</a></li>
-      </ul>
-    </div>
+  </nav>
+  </div>
     </nav>
     <style>
     .but{
@@ -48,3 +48,9 @@
         </button>
         </li>
       </ul> -->
+
+      <!-- <nav class="navbar navbar-expand-lg" style="background-color: #7f5af0;">
+        <div th:each="i : ${#numbers.sequence(1, 5)}" class="btn btn-primary dropdown-toggle">
+          <p>Div número <span th:text="${i}"></span></p> -->
+      <!-- Cosas a tomar en cuenta es que cada menu tiene que estar dentro de un 
+      <div class="btn-group" role="group"></div> -->

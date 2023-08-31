@@ -22,10 +22,11 @@ import proyect.store.repository.CategoriesRepo;
 import proyect.store.repository.SubCatRepo;
 import proyect.store.service.MyService;
 import proyect.store.service.services.NamesService;
+import proyect.store.service.services.SubCatService;
 
-//@RestController
-@Controller
-public class MainControler {
+@RestController
+//@Controller
+public class mainControler {
   @Autowired
   private CategoriesRepo categoriesRepo;
 
@@ -37,6 +38,9 @@ public class MainControler {
 
   @Autowired
   private NamesService namesService;
+
+  // @Autowired
+  // private SubCatService subCatService;
 
   private MyService service = new MyService();
 
@@ -50,6 +54,12 @@ public class MainControler {
   public String test(Model model) {
     model.addAttribute("objeto", service.myop());
     return "test";
+  }
+
+    @GetMapping("/test1")
+  public String test1(Model model) {
+    model.addAttribute("objeto", service.myop());
+    return "test1";
   }
 
   @GetMapping("/a")
