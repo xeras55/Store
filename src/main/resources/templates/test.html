@@ -17,8 +17,8 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li th:each="name : ${listCategories}"  class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${name.nombre_categoria}"></a>
-            <ul class="dropdown-menu" th:each="subName: ${listSubCategories}">
-              <li th:text="${subName}"><a href=""></a></li>
+            <ul class="dropdown-menu">
+              <li  th:each="num : ${listSubCategories}" ><a  class="dropdown-item" href="" th:text="${num}"></a></li>
             </ul>
           </li>
         </ul>

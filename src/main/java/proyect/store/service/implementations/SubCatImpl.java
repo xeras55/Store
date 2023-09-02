@@ -1,15 +1,14 @@
 package proyect.store.service.implementations;
-
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import jakarta.annotation.PostConstruct;
-import proyect.store.model.SubCategoriesModel;
 import proyect.store.repository.SubCatRepo;
 import proyect.store.service.services.SubCatService;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+@Service
 public class SubCatImpl implements SubCatService{
 
   @Autowired
@@ -18,15 +17,17 @@ public class SubCatImpl implements SubCatService{
   //private List<SubCategoriesModel> listSub;
   private List<String> listSubN;
   
+  private List<Long> idsToStart;
+  List<Long> listaDeIds = Arrays.asList(1L, 2L, 3L);
 
-  public SubCatImpl() {
-
-  }
+  public SubCatImpl(List<Long> listaDeIds) {
+    this.idsToStart = listaDeIds;
+}
 
   @PostConstruct
-  public void initialize(List<Long> ids){
+  public void initialize(){
     //listSub = subCatRepo.findAll();
-    listSubN = subCatRepo.findNamesByIds(ids);
+    listSubN = subCatRepo.findNamesByIds(listaDeIds);
   }
 
 

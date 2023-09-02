@@ -20,7 +20,9 @@ import proyect.store.model.SubCategoriesModel;
 import proyect.store.repository.CateSubAuxRepo;
 import proyect.store.repository.CategoriesRepo;
 import proyect.store.repository.SubCatRepo;
+import proyect.store.service.BringAllData;
 import proyect.store.service.MyService;
+import proyect.store.service.implementations.SubCatImpl;
 import proyect.store.service.services.NamesService;
 import proyect.store.service.services.SubCatService;
 
@@ -39,8 +41,11 @@ public class mainControler {
   @Autowired
   private NamesService namesService;
 
-  // @Autowired
-  // private SubCatService subCatService;
+  @Autowired
+  private SubCatService subCatService;
+
+  @Autowired
+  private BringAllData bringAllData;
 
   private MyService service = new MyService();
 
@@ -99,6 +104,11 @@ public class mainControler {
     
     return subCatRepo.findNamesByIds(listaDeIds);
   }
+
+      @GetMapping("/ff")
+  public List<Long> test() {
+    return bringAllData.BringAllDataall();
+  }
   
   @ModelAttribute("listCategories")
   public List<CategoriesModel> listCate() {
@@ -107,7 +117,7 @@ public class mainControler {
 
   @ModelAttribute("listSubCategories")
   public List<String> listingSub(){
-    return null;
+    return subCatService.listSubN();
   }
 
   // terngo que insertar lo de c en d
