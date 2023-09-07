@@ -1,4 +1,5 @@
 package proyect.store.service.implementations;
+
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,39 +9,44 @@ import proyect.store.service.services.SubCatService;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
 @Service
-public class SubCatImpl implements SubCatService{
+public class SubCatImpl implements SubCatService {
 
   @Autowired
   private SubCatRepo subCatRepo;
 
-  //private List<SubCategoriesModel> listSub;
+  // private List<SubCategoriesModel> listSub;
   private List<String> listSubN;
-  
+
   private List<Long> idsToStart;
   List<Long> listaDeIds = Arrays.asList(1L, 2L, 3L);
 
   public SubCatImpl(List<Long> listaDeIds) {
     this.idsToStart = listaDeIds;
-}
-
-  @PostConstruct
-  public void initialize(){
-    //listSub = subCatRepo.findAll();
-    listSubN = subCatRepo.findNamesByIds(listaDeIds);
   }
 
+  @PostConstruct
+  public void initialize() {
+    // listSub = subCatRepo.findAll();
+    listSubN = subCatRepo.findNamesByIds(listaDeIds);
+  }
 
   /*
   @Override
   public List<SubCategoriesModel> listSub() {
-    return listSub;
+  return listSub;
   }
- */
-    @Override
+   */
+  @Override
   public List<String> listSubN() {
     return listSubN;
   }
-  
+
+  @Override
+  public List<List<String>> listSubN1() {
+    return null;
+  }
+
 }
-//!la implementacion es lo que esta mal no puedo hacerla un service
+// !la implementacion es lo que esta mal no puedo hacerla un service

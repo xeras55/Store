@@ -7,4 +7,5 @@ import proyect.store.model.SubCategoriesModel;
 public interface SubCatService {
   //public List<SubCategoriesModel> listSub();
   public List<String> listSubN();
+  public  List<List<String>> listSubN1();
 }

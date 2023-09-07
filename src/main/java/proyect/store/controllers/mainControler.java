@@ -3,6 +3,7 @@ package proyect.store.controllers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +23,13 @@ import proyect.store.repository.CategoriesRepo;
 import proyect.store.repository.SubCatRepo;
 import proyect.store.service.BringAllData;
 import proyect.store.service.MyService;
+import proyect.store.service.implementations.SubCatIm;
 import proyect.store.service.implementations.SubCatImpl;
 import proyect.store.service.services.NamesService;
 import proyect.store.service.services.SubCatService;
 
-@RestController
-//@Controller
+//@RestController
+@Controller
 public class mainControler {
   @Autowired
   private CategoriesRepo categoriesRepo;
@@ -47,6 +49,10 @@ public class mainControler {
   @Autowired
   private BringAllData bringAllData;
 
+  @Autowired
+  private SubCatIm subCat;
+
+
   private MyService service = new MyService();
 
   @GetMapping("/inicio")
@@ -58,10 +64,11 @@ public class mainControler {
   @GetMapping("/test")
   public String test(Model model) {
     model.addAttribute("objeto", service.myop());
-    return "test";
+    // return "test";
+    return null;
   }
 
-    @GetMapping("/test1")
+  @GetMapping("/test1")
   public String test1(Model model) {
     model.addAttribute("objeto", service.myop());
     return "test1";
@@ -85,7 +92,7 @@ public class mainControler {
   @GetMapping("/c")
   public List<Long> verPuerbasLong() {
     return cateSubAuxRepo.fidByMySelf(4L);
-    }
+  }
 
   @GetMapping("/d")
   public List<SubCategoriesModel> verPuerbassub() {
@@ -97,29 +104,50 @@ public class mainControler {
     List<Long> listaDeIds = Arrays.asList(1L, 2L, 3L);
     return subCatRepo.findNamesByIds(listaDeIds);
   }
-  
-    @GetMapping("/f")
+
+  @GetMapping("/f")
   public List<String> lograrelistar() {
     List<Long> listaDeIds = cateSubAuxRepo.fidByMySelf(4L);// regresara 3 y 4
-    
+
     return subCatRepo.findNamesByIds(listaDeIds);
   }
 
-      @GetMapping("/ff")
+  @GetMapping("/ff")
   public List<Long> test() {
     return bringAllData.BringAllDataall();
   }
-  
+
+  @GetMapping("/fff")
+  public List<List<String>> test1() {
+    return bringAllData.trial();
+  }
+
   @ModelAttribute("listCategories")
   public List<CategoriesModel> listCate() {
     return namesService.list();
   }
-
+  
   @ModelAttribute("listSubCategories")
-  public List<String> listingSub(){
+  public List<String> listingSub() {
     return subCatService.listSubN();
   }
 
+  @ModelAttribute("listingSubcat")
+  public List<List<String>> listTree() {
+    return bringAllData.trial();
+  }
+
+  @ModelAttribute("bringCat")
+    public List<String> listSubN1() {
+    //return subCat.working();
+    return subCat.bringCategories();
+    }
+
+
+    @ModelAttribute("bringSubCat")
+    public List<List<String>> listSubN2() {
+    return subCat.bringSubCat();
+    }
   // terngo que insertar lo de c en d
 
 }

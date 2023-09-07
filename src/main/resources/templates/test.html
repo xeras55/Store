@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<title>advaced test</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"> 
 </head>
 <body style="background-color: #232946">
@@ -16,12 +16,15 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li th:each="name : ${listCategories}"  class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${name.nombre_categoria}"></a>
-            <ul class="dropdown-menu">
-              <li  th:each="num : ${listSubCategories}" ><a  class="dropdown-item" href="" th:text="${num}"></a></li>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${name.nombre_categoria}" th:value="${name.id_categoria_p}"></a>
+            <ul class="dropdown-menu" th:each="entry : ${bringSubCat}">
+              <!-- <li  th:each="num : ${listSubCategories}" ><a  class="dropdown-item" href="" th:text="${num}"></a></li>  -->
+              <li  th:each="num : ${bring}" ><a  class="dropdown-item" href="" th:text="${num}"></a></li> 
             </ul>
           </li>
         </ul>
+      </div>
+      <!-- <div th:text="${bring}"> -->
       </div>
     </div>
   </nav>

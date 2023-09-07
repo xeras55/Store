@@ -18,4 +18,13 @@ public interface SubCatRepo extends JpaRepository<SubCategoriesModel, Long>{
     "WHERE sub.id_subcategoria IN :ids"
   )
   List<String> findNamesByIds(@Param("ids") List<Long> ids);
+
+  @Query(
+    "SELECT sub.nombre_subcategoria " +
+    "FROM SubCategoriesModel sub " +
+    "WHERE sub.id_subcategoria IN :ids"
+  )
+  List<String> findNamesByIds1(@Param("ids") List<List<Long>>ids);
+
+  
 }
