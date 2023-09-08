@@ -140,8 +140,8 @@ public class mainControler {
 
   @ModelAttribute("bringCat")
     public List<String> listSubN1() {
-    //return subCat.bringCategories();
-    return null;
+    return subCat.bringCategories();
+    
     }
 
 
@@ -154,6 +154,7 @@ public class mainControler {
     @ModelAttribute("brinBoth")
     public Map<String, List<String>> listSubN3() {
     return subCat.bringBoth();
+    
     }
   // terngo que insertar lo de c en d
 

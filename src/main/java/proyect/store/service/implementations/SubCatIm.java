@@ -91,13 +91,13 @@ public class SubCatIm implements SubCatService {
     List<CategoriesModel> fList = categoriesRepo.findAll();// !a
     String aaa = "";
     for (CategoriesModel categoriesModel : fList) {
-      System.out.println(categoriesModel.getNombre_categoria());
+      //System.out.println(categoriesModel.getNombre_categoria());
       listSubList.add(subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
       mapa.put(categoriesModel.getNombre_categoria(), subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
 
     }
     System.out.println(mapa);
-    return null;
+    return mapa;
   }
 
 
