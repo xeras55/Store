@@ -2,7 +2,9 @@ package proyect.store.service.implementations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -30,6 +32,9 @@ public class SubCatIm implements SubCatService {
                                 // Arrays.asList(1L, 2L, 3L,4l)
 
   private List<String> categoriesList = new ArrayList<>();
+
+  Map<String, List<String>> mapa = new HashMap<>();
+  
 
   private List<String> listSubN;
 
@@ -74,11 +79,27 @@ public class SubCatIm implements SubCatService {
     for (CategoriesModel categoriesModel : fList) {
       // System.out.println(categoriesModel.getNombre_categoria());
       listSubList.add(subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
-      
+      mapa.put("a", subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
     }
     System.out.println(listSubList);
     return listSubList;
   }
+
+
+
+    public Map<String, List<String>> bringBoth() {
+    List<CategoriesModel> fList = categoriesRepo.findAll();// !a
+    String aaa = "";
+    for (CategoriesModel categoriesModel : fList) {
+      System.out.println(categoriesModel.getNombre_categoria());
+      listSubList.add(subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
+      mapa.put(categoriesModel.getNombre_categoria(), subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
+
+    }
+    System.out.println(mapa);
+    return null;
+  }
+
 
   public SubCatIm(List<Long> listaDeIds) {
     this.idsToStart = listaDeIds;

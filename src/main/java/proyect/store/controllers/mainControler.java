@@ -3,6 +3,7 @@ package proyect.store.controllers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,14 +140,20 @@ public class mainControler {
 
   @ModelAttribute("bringCat")
     public List<String> listSubN1() {
-    //return subCat.working();
-    return subCat.bringCategories();
+    //return subCat.bringCategories();
+    return null;
     }
 
 
     @ModelAttribute("bringSubCat")
     public List<List<String>> listSubN2() {
-    return subCat.bringSubCat();
+    //return subCat.bringSubCat();
+    return null;
+    }
+
+    @ModelAttribute("brinBoth")
+    public Map<String, List<String>> listSubN3() {
+    return subCat.bringBoth();
     }
   // terngo que insertar lo de c en d
 
