@@ -96,7 +96,7 @@ public class SubCatIm implements SubCatService {
       mapa.put(categoriesModel.getNombre_categoria(), subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
 
     }
-    System.out.println(mapa);
+    //System.out.println(mapa);
     return mapa;
   }
 

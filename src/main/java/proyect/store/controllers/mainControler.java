@@ -1,5 +1,6 @@
 package proyect.store.controllers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +22,7 @@ import proyect.store.model.CategoriesModel;
 import proyect.store.model.SubCategoriesModel;
 import proyect.store.repository.CateSubAuxRepo;
 import proyect.store.repository.CategoriesRepo;
+import proyect.store.repository.NewCategoriesRepo;
 import proyect.store.repository.SubCatRepo;
 import proyect.store.service.BringAllData;
 import proyect.store.service.MyService;
@@ -53,6 +55,8 @@ public class mainControler {
   @Autowired
   private SubCatIm subCat;
 
+  @Autowired
+  NewCategoriesRepo newCategoriesRepo;
 
   private MyService service = new MyService();
 
@@ -127,7 +131,7 @@ public class mainControler {
   public List<CategoriesModel> listCate() {
     return namesService.list();
   }
-  
+
   @ModelAttribute("listSubCategories")
   public List<String> listingSub() {
     return subCatService.listSubN();
@@ -139,23 +143,28 @@ public class mainControler {
   }
 
   @ModelAttribute("bringCat")
-    public List<String> listSubN1() {
+  public List<String> listSubN1() {
     return subCat.bringCategories();
-    
-    }
 
+  }
 
-    @ModelAttribute("bringSubCat")
-    public List<List<String>> listSubN2() {
-    //return subCat.bringSubCat();
+  @ModelAttribute("bringSubCat")
+  public List<List<String>> listSubN2() {
+    // return subCat.bringSubCat();
     return null;
-    }
+  }
 
-    @ModelAttribute("brinBoth")
-    public Map<String, List<String>> listSubN3() {
+  @ModelAttribute("brinBoth")
+  public Map<String, List<String>> listSubN3() {
     return subCat.bringBoth();
-    
-    }
+
+  }
+
+  @ModelAttribute("c3p0")
+  public List<CategoriesModel> categoriesModelsc3p0() throws SQLException{
+    newCategoriesRepo.getAllCategories();
+    return null;
+  }
   // terngo que insertar lo de c en d
 
 }
