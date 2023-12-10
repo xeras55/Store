@@ -1,6 +1,7 @@
 package proyect.store.repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ import proyect.store.model.CategoriesModel;
 
 @Service
 public class NewCategoriesRepo {
+  /*
   @Autowired
   DataSource dataSource;
 
@@ -38,5 +40,44 @@ public class NewCategoriesRepo {
 
         return categories;
     }
+     */
 
+  /* */
+  @Autowired
+  private Connection con;
+
+
+  public NewCategoriesRepo(Connection con){
+    this.con = con;
+  }
+
+  public List<CategoriesModel> getAllCategories() throws SQLException {
+    List<CategoriesModel> res = new ArrayList<>();
+    try {
+      final PreparedStatement statement = con
+      .prepareStatement("SELECT * FROM categorias_principales");
+
+      try(statement){
+        statement.execute();
+        final ResultSet resultSet = statement.getResultSet();
+
+        try(resultSet){
+          while(resultSet.next()){
+            res.add(new CategoriesModel(resultSet.getLong("id_categoria_p"),
+                                        resultSet.getString("nombre_categoria")));
+          }
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    for (CategoriesModel categoriesModel : res) {
+      System.out.println(categoriesModel.getNombre_categoria());
+    }
+    
+    return res;
+    
+  }
+
+  
 }

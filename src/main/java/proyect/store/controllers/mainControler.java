@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import proyect.store.DTO.CategoriesNamesDTO;
+import proyect.store.control.CategoriesControl;
 import proyect.store.model.CategSubCaAux;
 import proyect.store.model.CategoriesModel;
 import proyect.store.model.SubCategoriesModel;
@@ -57,6 +58,9 @@ public class mainControler {
 
   @Autowired
   NewCategoriesRepo newCategoriesRepo;
+  
+  @Autowired
+  CategoriesControl categoriesControl;
 
   private MyService service = new MyService();
 
@@ -163,6 +167,13 @@ public class mainControler {
   @ModelAttribute("c3p0")
   public List<CategoriesModel> categoriesModelsc3p0() throws SQLException{
     newCategoriesRepo.getAllCategories();
+    return null;
+  }
+
+  @ModelAttribute("3cp01")
+  public List<CategoriesModel> catTest() throws SQLException{
+    //categoriesControl = new CategoriesControl();
+    categoriesControl.list();
     return null;
   }
   // terngo que insertar lo de c en d
