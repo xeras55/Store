@@ -1,7 +1,5 @@
 package proyect.store.model;
 
-
-
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
@@ -40,6 +38,9 @@ public class CategoriesModel {
 
   public void setNombre_categoria(String nombre_categoria) {
     this.nombre_categoria = nombre_categoria;
+  }
+
+  public void setId_categoria_p(long long1) {
   }
 
 }
