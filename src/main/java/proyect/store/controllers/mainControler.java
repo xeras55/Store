@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +19,26 @@ import org.springframework.web.bind.annotation.RestController;
 import proyect.store.DTO.CategoriesNamesDTO;
 import proyect.store.model.CategSubCaAux;
 import proyect.store.model.CategoriesModel;
+import proyect.store.model.ProductoModel;
 import proyect.store.model.SubCategoriesModel;
+import proyect.store.model.TiposProductosModel;
 import proyect.store.repository.CateSubAuxRepo;
 import proyect.store.repository.CategoriesRepo;
+import proyect.store.repository.ProductosRepo;
 import proyect.store.repository.SubCatRepo;
+import proyect.store.repository.SubcatTiposAuxRepo;
+import proyect.store.repository.TiposProductosRepo;
 import proyect.store.service.BringAllData;
 import proyect.store.service.MyService;
 import proyect.store.service.implementations.SubCatIm;
 import proyect.store.service.implementations.SubCatImpl;
 import proyect.store.service.services.NamesService;
 import proyect.store.service.services.SubCatService;
+import org.springframework.web.bind.annotation.RequestParam;
 
-//@RestController
-@Controller
+
+@RestController
+//@Controller
 public class mainControler {
   @Autowired
   private CategoriesRepo categoriesRepo;
@@ -52,6 +60,15 @@ public class mainControler {
 
   @Autowired
   private SubCatIm subCat;
+
+  @Autowired
+  private SubcatTiposAuxRepo subcatTiposAuxRepo;
+  
+  @Autowired
+  private TiposProductosRepo tiposProductosRepo;
+
+  @Autowired
+  private ProductosRepo productosRepo;
 
 
   private MyService service = new MyService();
@@ -122,6 +139,22 @@ public class mainControler {
   public List<List<String>> test1() {
     return bringAllData.trial();
   }
+
+  @GetMapping("/g")
+  public List<Long>getSubCatTiposAux() {
+      return subcatTiposAuxRepo.findIdSubSub(1L);
+  }
+
+  @GetMapping("/h")
+  public List<TiposProductosModel>getTiposModelo() {
+      return tiposProductosRepo.findAll();
+  }
+  
+  @GetMapping("/i")
+  public Optional<ProductoModel>getProductosModel() {
+      return productosRepo.findById(1L);
+  }
+  
 
   @ModelAttribute("listCategories")
   public List<CategoriesModel> listCate() {
