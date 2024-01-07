@@ -1,47 +1,120 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>advaced test</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"> 
-</head>
-<body style="background-color: #232946">
-  <nav class="navbar navbar-expand-lg" style="background-color: #b8c1ec;">
-    <div class="container-fluid">
-    <a class="navbar-brand" href="#">Tienda de ropa generica</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li th:each="name : ${listCategories}"  class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${name.nombre_categoria}" th:value="${name.id_categoria_p}"></a>
-            <ul class="dropdown-menu" th:each="entry : ${bringSubCat}">
-              <!-- <li  th:each="num : ${listSubCategories}" ><a  class="dropdown-item" href="" th:text="${num}"></a></li>  -->
-              <li  th:each="num : ${bring}" ><a  class="dropdown-item" href="" th:text="${num}"></a></li> 
-            </ul>
-          </li>
-        </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>advaced test</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body style="background-color: #284b63">
+    <!-- Just NavBar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #778da9">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Tienda de ropa generica</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown" th:each="cat : ${brinBoth}">
+              <a
+                th:text="${cat.key}"
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+              </a>
+              <ul class="dropdown-menu" style="background-color: #e0e1dd">
+                <li th:each="subCat : ${cat.value}">
+                  <a
+                    th:text="${subCat}"
+                    class="dropdown-item"
+                    href="#"
+                    style="background-color: #e0e1dd"
+                  ></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-      <!-- <div th:text="${bring}"> -->
+    </nav>
+    <!-- Just NavBar -->
+
+    <!-- Card para elementos en descuento o noticias -->
+
+    <div class="container mx-auto  text-center" style="background-color: red;">
+      <div class="row gx-5">
+        <div class="col card" th:each="prodctDesct : ${cardsProductosDescuento}" style="background-color: purple;">
+          <div class="card-body">
+            <div class="p-3" th:text="${prodctDesct}" style="background-color: purple;"></div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
-  </div>
-    </nav>
-    <style>
-    .but{
-      background-color: #b8c1ec;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <!-- <div class="container mx-auto">
+      <div class="container-sm row px-4" style="background-color: red">
+        <div
+          class="card"
+          th:each="prodctDesct : ${cardsProductosDescuento}"
+          style="width: 18rem; height: max-content; background-color: #415a77"
+        >
+          <ul class="card-body" th:text="${prodctDesct}"></ul>
+        </div>
+      </div>
+    </div> -->
+    <!-- Card para elementos en descuento o noticias -->
 
-</body>
+    <!-- Footer -->
+    <div
+      class="card fixed-bottom"
+      style="height: 8rem; background-color: #0d1b2a"
+    >
+      <div class="card-body" style="width: 18rem">
+        <h5 style="color: white" class="card-title">About Us</h5>
+        <ul class="list-group">
+          <a href="">Acerca de Nuestra Tienda</a>
+          <a href="">Sustentabilidad</a>
+          <a href="">Tarjeta de Regalo</a>
+          <a href="">Trabaja con nostros</a>
+        </ul>
+      </div>
+    </div>
+    <!-- Footer -->
+
+    <style>
+      .but {
+        background-color: #b8c1ec;
+      }
+    </style>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
 
-      <!-- <button class="navbar-toggler custom-ul" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<!-- <button class="navbar-toggler custom-ul" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-asdicon"></span>
       </button>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center" id="categor">
@@ -52,8 +125,8 @@
         </li>
       </ul> -->
 
-      <!-- <nav class="navbar navbar-expand-lg" style="background-color: #7f5af0;">
+<!-- <nav class="navbar navbar-expand-lg" style="background-color: #7f5af0;">
         <div th:each="i : ${#numbers.sequence(1, 5)}" class="btn btn-primary dropdown-toggle">
           <p>Div número <span th:text="${i}"></span></p> -->
-      <!-- Cosas a tomar en cuenta es que cada menu tiene que estar dentro de un 
+<!-- Cosas a tomar en cuenta es que cada menu tiene que estar dentro de un 
       <div class="btn-group" role="group"></div> -->

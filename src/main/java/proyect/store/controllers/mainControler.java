@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import proyect.store.DTO.CategoriesNamesDTO;
+import proyect.store.DTO.ProductoTestDTO;
 import proyect.store.model.CategSubCaAux;
 import proyect.store.model.CategoriesModel;
 import proyect.store.model.ProductoModel;
@@ -30,15 +31,15 @@ import proyect.store.repository.SubcatTiposAuxRepo;
 import proyect.store.repository.TiposProductosRepo;
 import proyect.store.service.BringAllData;
 import proyect.store.service.MyService;
+import proyect.store.service.implementations.ProductoImp;
 import proyect.store.service.implementations.SubCatIm;
 import proyect.store.service.implementations.SubCatImpl;
 import proyect.store.service.services.NamesService;
 import proyect.store.service.services.SubCatService;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-@RestController
-//@Controller
+//@RestController
+@Controller
 public class mainControler {
   @Autowired
   private CategoriesRepo categoriesRepo;
@@ -63,13 +64,15 @@ public class mainControler {
 
   @Autowired
   private SubcatTiposAuxRepo subcatTiposAuxRepo;
-  
+
   @Autowired
   private TiposProductosRepo tiposProductosRepo;
 
   @Autowired
   private ProductosRepo productosRepo;
 
+  @Autowired
+  private ProductoImp productoImp;
 
   private MyService service = new MyService();
 
@@ -102,7 +105,7 @@ public class mainControler {
     List<CategoriesModel> res = categoriesRepo.findAll();
 
     for (CategoriesModel categoriesModel : res) {
-      System.out.println(categoriesModel.getNombre_categoria());
+      // System.out.println(categoriesModel.getNombre_categoria());
     }
     return categoriesRepo.findAll();
   }
@@ -141,26 +144,31 @@ public class mainControler {
   }
 
   @GetMapping("/g")
-  public List<Long>getSubCatTiposAux() {
-      return subcatTiposAuxRepo.findIdSubSub(1L);
+  public List<Long> getSubCatTiposAux() {
+    return subcatTiposAuxRepo.findIdSubSub(1L);
   }
 
   @GetMapping("/h")
-  public List<TiposProductosModel>getTiposModelo() {
-      return tiposProductosRepo.findAll();
+  public List<TiposProductosModel> getTiposModelo() {
+    return tiposProductosRepo.findAll();
   }
-  
-  @GetMapping("/i")
-  public Optional<ProductoModel>getProductosModel() {
-      return productosRepo.findById(1L);
-  }
-  
 
+  @GetMapping("/i")
+  public Optional<ProductoModel> getProductosModel() {
+    return productosRepo.findById(1L);
+  }
+  /*
+  @GetMapping("j")
+  public List<ProductoModel>getOffers() {
+      return productosRepo.findByOfertas(1L);
+  }
+  
+ */
   @ModelAttribute("listCategories")
   public List<CategoriesModel> listCate() {
     return namesService.list();
   }
-  
+
   @ModelAttribute("listSubCategories")
   public List<String> listingSub() {
     return subCatService.listSubN();
@@ -172,23 +180,28 @@ public class mainControler {
   }
 
   @ModelAttribute("bringCat")
-    public List<String> listSubN1() {
+  public List<String> listSubN1() {
     return subCat.bringCategories();
-    
-    }
 
+  }
 
-    @ModelAttribute("bringSubCat")
-    public List<List<String>> listSubN2() {
-    //return subCat.bringSubCat();
+  @ModelAttribute("bringSubCat")
+  public List<List<String>> listSubN2() {
+    // return subCat.bringSubCat();
     return null;
-    }
+  }
 
-    @ModelAttribute("brinBoth")
-    public Map<String, List<String>> listSubN3() {
+  @ModelAttribute("brinBoth")
+  public Map<String, List<String>> listSubN3() {
+    //System.out.println(subCat.bringBoth().size());
     return subCat.bringBoth();
-    
-    }
-  // terngo que insertar lo de c en d
+
+  }
+
+  @ModelAttribute("cardsProductosDescuento")
+  public List<String> testConseguirCard() {
+    List<String> productsImplList = productoImp.bringProductosList();
+    return productsImplList;
+  }
 
 }

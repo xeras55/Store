@@ -17,16 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Esto hace que cuando se vuelva responsive el texto desaparezca -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown" th:each="cat : ${brinBoth}">
-              <a th:text="${cat.key}"  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              </a>
-              <ul class="dropdown-menu">  
-                <li th:each="subCat : ${cat.value}">
-                  <a th:text="${subCat}"class="dropdown-item" href="#"></a>
-                </li>
-              </ul>
+            <li class="nav-item dropdown" th:each="cat : ${testParaVerCards}">
+              <a th:text="${cat}"  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              </a>  
             </li>
-    
           </ul>
         </div>
       </div>

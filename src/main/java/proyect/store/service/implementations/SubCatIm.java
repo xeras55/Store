@@ -81,7 +81,7 @@ public class SubCatIm implements SubCatService {
       listSubList.add(subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
       mapa.put("a", subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
     }
-    System.out.println(listSubList);
+    //System.out.println(listSubList);
     return listSubList;
   }
 
@@ -96,7 +96,7 @@ public class SubCatIm implements SubCatService {
       mapa.put(categoriesModel.getNombre_categoria(), subCatRepo.findNamesByIds(cateSubAuxRepo.fidByMySelf(categoriesModel.getId_categoria_p())));
 
     }
-    System.out.println(mapa);
+    //System.out.println(mapa);
     return mapa;
   }
 
